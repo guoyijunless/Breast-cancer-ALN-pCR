@@ -40,7 +40,7 @@ class RNNModel(nn.Module):
         self.dropout0 = nn.Dropout()
         self.rnn = nn.GRU(input_size, hidden_size, num_layers=num_layers, dropout=0.5)
         self.attention = nn.Linear(hidden_size, 1)
-        self.fc_st = nn.Linear(hidden_size + 4, output_size)
+        self.fc_st = nn.Linear(hidden_size + 7, output_size)
         self.dropout1 = nn.Dropout()
         self.fc = nn.Linear(hidden_size, output_size)
 
@@ -77,5 +77,5 @@ class RNNModel(nn.Module):
 if __name__ == '__main__':
     net = RNNModel(10, 72, 100, 6, 2)
     x = torch.rand(1, 6, 10)
-    st = torch.tensor([[0,0,1,0]])
+    st = torch.tensor([[0,0,1,0,0,1,0]])
     print(net(x).shape)
